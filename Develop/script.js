@@ -1,22 +1,8 @@
 // Assignment code here
-function uppers() {
-  return String.fromCharCode( Math.floor( Math.random() * 26 ) + 65 );
-}
-
-function lowers() {
-  return String.fromCharCode( Math.floor( Math.random() * 26 ) + 97 );
-} 
-
-function numbers() {
-  return String.fromCharCode( Math.floor( Math.random() * 10 ) + 48 );
-}
-
-function symbols() {
-   const symbol = "~!@#$%^&*(){}[]<>";
-   return symbol[ Math.floor( Math.random() * symbol.length ) ];
-}
-
-var characterArray = [uppers(), lowers(), numbers(), symbols()];
+var lowers = "abcdefghijklmnopqrstuvwxyz";
+var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "013456789";
+var symbols = "!~@#$%^&*(){}[]<>";
 
 
 // Get references to the #generate element
@@ -24,38 +10,57 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-
-  // confirm lowercase letters
-  var lowerConfirm = confirm("Would you like to include lowercase letters?");
-  if (lowerConfirm) {
-    var finalPassword = lowers();
+  reset: 
+  
+  function finalPassword() {
+  var pass = "";
+      options = uppers + lowers + numbers + symbols;
+  for (var i = 0; i < 128; i++) {
+    pass += options.charAt(Math.random() * options.length);
   }
-  else {}
-  
-  // confirm uppcase letters
-  var upperConfirm = confirm("Would you like to include uppercase letters?");
-  if (upperConfirm) {
-    var finalPassword = lowers() + uppers();
+  return pass.slice(0, promptCount);
   }
-  else{}
-  
-  //confirm numbers
-  //var numbersConfirm = confirm("Would you like to include numbers?");
-  
-  //confirm symbols
-  //var symbolsConfirm = confirm("Would you like to include symbols?");
 
+  function types() {
+    var upperConfirm = confirm("Would you like to include UPPERCASE letters?");
+    if (!upperConfirm) {
+      uppers = uppers.toLowerCase;
+    }
+    
+    var lowerConfirm = confirm("Would you like to include lowercase letters?");
+    if (!lowerConfirm) {
+      lowers = lowers.toUpperCase;
+    }
+    
+    var numbersConfirm = confirm("Would you like to include numbers?");
+    if (!numbersConfirm) {numbers = false};
+    
+    var symbolsConfirm = confirm("Would you like to include symbols?");
+    if (!symbolsConfirm) {symbols = false};
+    
+    while (!upperConfirm && !lowerConfirm && !numbersConfirm && !symbolsConfirm) {
+      alert("Must select a minimum of one character type!");
+  
+    }
+  }
+  
+  
   // prompt for the length of the password
-  //var characterCount = window.prompt("how many characters?")
+  var promptCount = window.prompt("How many characters?")
+  while ( promptCount < 8 || promptCount > 128 ) {
+    alert("Please chose a number between 8 and 128");
+    var promptCount = window.prompt("How many characters?")
+  }
+  types();
   
   //var password = generatePassword();
   var passwordText = document.querySelector("#password");
   
-  passwordText.value = finalPassword;
+  passwordText.value = finalPassword();
 
 }
-
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword); 
+generateBtn.addEventListener("click", writePassword);
+
 
 
