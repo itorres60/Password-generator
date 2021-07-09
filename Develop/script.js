@@ -10,39 +10,37 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  reset: 
-  
+  alert("ATTENTION: Must reload page after every generated password to reset confirm values!")
   function finalPassword() {
-  var pass = "";
-      options = uppers + lowers + numbers + symbols;
-  for (var i = 0; i < 128; i++) {
-    pass += options.charAt(Math.random() * options.length);
-  }
-  return pass.slice(0, promptCount);
+    var pass = "";
+        options = uppers + lowers + numbers + symbols;
+    for (var i = 0; i < 128; i++) {
+      pass += options.charAt(Math.random() * options.length);
+    }
+    return pass.slice(0, promptCount);
   }
 
   function types() {
     var upperConfirm = confirm("Would you like to include UPPERCASE letters?");
-    if (!upperConfirm) {
-      uppers = uppers.toLowerCase;
-    }
+    if (upperConfirm) {uppers = false}
     
     var lowerConfirm = confirm("Would you like to include lowercase letters?");
-    if (!lowerConfirm) {
-      lowers = lowers.toUpperCase;
-    }
+    if (!lowerConfirm) {lowers = false}
     
     var numbersConfirm = confirm("Would you like to include numbers?");
     if (!numbersConfirm) {numbers = false};
     
     var symbolsConfirm = confirm("Would you like to include symbols?");
     if (!symbolsConfirm) {symbols = false};
-    
-    while (!upperConfirm && !lowerConfirm && !numbersConfirm && !symbolsConfirm) {
-      alert("Must select a minimum of one character type!");
   
+    if (!upperConfirm && !lowerConfirm && !numbersConfirm && !symbolsConfirm) {
+      alert("Must select a minimum of one character type!");
+      location.reload();
     }
+    else {};
   }
+
+  
   
   
   // prompt for the length of the password
@@ -61,6 +59,3 @@ function writePassword() {
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
