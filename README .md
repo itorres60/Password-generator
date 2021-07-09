@@ -2,4 +2,6 @@ This app takes given variables and places them into a default password structure
 
 ![Randomizer screenshot](/Assets/Images/randomizer.jpeg "code text of the randomizer")
 
-![Character types prompt](/Assets/Images/confirm.jpeg "Code in the prompts section")
+![Character types prompt](/Assets/Images/confirms.jpeg "Code in the prompts section")
+
+![Password generator text](Assets/Images/password.jpeg "code of the password generator")
