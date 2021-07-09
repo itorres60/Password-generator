@@ -25,7 +25,7 @@ function writePassword() {
 
   function types() {
     var upperConfirm = confirm("Would you like to include UPPERCASE letters?");
-    if (upperConfirm) {uppers = false}
+    if (!upperConfirm) {uppers = false}
     
     var lowerConfirm = confirm("Would you like to include lowercase letters?");
     if (!lowerConfirm) {lowers = false}
