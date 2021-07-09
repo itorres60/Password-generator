@@ -10,7 +10,10 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  alert("ATTENTION: Must reload page after every generated password to reset confirm values!")
+
+  alert("ATTENTION: Must reload page after every generated password to reset values!")
+
+
   function finalPassword() {
     var pass = "";
         options = uppers + lowers + numbers + symbols;
